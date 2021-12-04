@@ -1,17 +1,45 @@
 import './App.css';
 import JoblyApi from './api';
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, NavLink, Link } from 'react-router-dom';
 import NavBar from './NavBar';
+import Login from './Login';
+import UserContext from "./auth/UserContext";
+import useLocalStorage from "./hooks/useLocalStorage";
 
-// prob need to store credentials in state
+
+
+// Key name for storing token in localStorage for "remember me" re-login
+export const TOKEN_STORAGE_ID = "jobly-token";
 
 function App() {
+  const [infoLoaded, setInfoLoaded] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  // ^need to store credentials in state
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
+
+  /** Handles site-wide login.
+   *
+   * Make sure you await this function and check its return value!
+   */
+   async function login(username, password) {
+    try {
+      let token = await JoblyApi.login(username, password);
+      setToken(token);
+      return { success: true };
+    } catch (errors) {
+      console.error("login failed", errors);
+      return { success: false, errors };
+    }
+  }
+  
   return (
     <div className="App">
       
-
+      
       <BrowserRouter>
+        <UserContext.Provider
+            value={{ currentUser }}>
         <NavBar />
         
         <Routes> {/* replaces <Switch> in v6*/ }
@@ -29,7 +57,8 @@ function App() {
           }/>
           <Route exact="true" path="/login" element={
             <>
-             {'hi'}
+            {/* make a loggedin context */}
+             <Login login={login}/>
             </>
           }/>
           <Route exact="true" path="/signup" element={
@@ -45,6 +74,7 @@ function App() {
             if no other routes match.
           */}
         </Routes>
+        </UserContext.Provider>
       </BrowserRouter>
     </div>
   );
