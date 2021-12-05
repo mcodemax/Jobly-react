@@ -46,12 +46,13 @@ function Login({ login }) {
         const res = await login(username, password)
     
         if (res.success) {
-            navigate("/companies");
+            navigate("/companies"); //navigate to personal page route prob
         } else {
             setloginErrors(res.errors);
+            setFormData(emptyForm);
         }
 
-        setFormData(emptyForm);
+        
     };
 
     //make a form

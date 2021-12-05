@@ -66,6 +66,14 @@ class JoblyApi {
     return res.jobs;
   }
 
+  /** Signup and return token */
+  static async signUp(userObj) {
+    
+    let res = await this.request(`auth/register`, userObj, 'post');
+    console.log(`*************************************************************************inbackend`, res)
+    return res.token;
+  }
+
   // obviously, you'll add a lot here ...
 }
 

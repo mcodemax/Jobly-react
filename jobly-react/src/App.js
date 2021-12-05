@@ -10,6 +10,8 @@ import Login from './Login';
 import CompaniesList from './companies/CompaniesList';
 import CompanyDetail from './companies/CompanyDetail';
 
+import SignUpForm from './homepage/SignUpForm';
+
 import JobList from './jobs/JobList';
 
 // Key name for storing token in localStorage for "remember me" re-login
@@ -35,7 +37,33 @@ function App() {
       return { success: false, errors };
     }
   }
+
+
+  // might need to make a f() to set the current user
+
   
+  /**
+   * How to signUp
+   * 
+   * 
+   * in backend=> /auth/register<= { username, password, firstName, lastName, email }
+   * 
+   * test:
+   * { "username":"Fname1", "password":"passy1", "firstName":"Adam", "lastName":"Ant", "email":"Adam@smolboi.net" }
+   * 
+   */
+  async function signUp(userObj) {
+    try {
+      console.log('in signup', userObj)
+      let token = await JoblyApi.signUp(userObj);
+      setToken(token);
+      return { success: true };
+    } catch (errors) {
+      console.error("signup failed", errors);
+      return { success: false, errors };
+    }
+  }
+
   // make f() to get the curr user
 
   return (
@@ -45,6 +73,7 @@ function App() {
       <BrowserRouter>
         <UserContext.Provider
             value={{ currentUser }}>
+              {/* maybe add value= isLoggedIn or currUser */}
         <NavBar />
         
         <Routes> {/* replaces <Switch> in v6*/ }
@@ -68,7 +97,7 @@ function App() {
           }/>
           <Route exact="true" path="/signup" element={
             <>
-             {'bye'}
+             <SignUpForm signUp={signUp}/>
             </>
           }/>
           <Route exact="true" path="/companies" element={
