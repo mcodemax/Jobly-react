@@ -8,6 +8,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 
 import Login from './Login';
 import CompaniesList from './companies/CompaniesList';
+import CompanyDetail from './companies/CompanyDetail';
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "jobly-token";
@@ -69,11 +70,9 @@ function App() {
             </>
           }/>
           <Route exact="true" path="/companies" element={
-            <>
-             {'companies'}
              <CompaniesList />
-            </>
           }/>
+          <Route path="/companies/:companyHandle" element={<CompanyDetail />} />
           <Route path="*" element={<Navigate replace to="/" />} />
           {/*
             When no other route matches the URL, you can render a "not found"

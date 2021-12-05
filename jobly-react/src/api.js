@@ -43,7 +43,6 @@ class JoblyApi {
     return res.company;
   }
 
-
   /** Get auth token or get denied */
   static async login(username, password) {
     console.log({username, password})
@@ -52,14 +51,16 @@ class JoblyApi {
       password: password
     }, 'post');
     
-    return res.token;  
+    return res.token;
   }
 
-  /** get list of all companies */
-  static async getAllCompanies() {
-    let res = await this.request(`companies`);
+  /** get list of all companies (filtered by name if not undefined) */
+  static async getAllCompanies(name) {
+    let res = await this.request(`companies`, {name});
     return res.companies;
   }
+
+  
 
   // obviously, you'll add a lot here ...
 }
