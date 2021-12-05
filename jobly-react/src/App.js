@@ -3,11 +3,11 @@ import JoblyApi from './api';
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, NavLink, Link } from 'react-router-dom';
 import NavBar from './NavBar';
-import Login from './Login';
 import UserContext from "./auth/UserContext";
 import useLocalStorage from "./hooks/useLocalStorage";
 
-
+import Login from './Login';
+import CompaniesList from './companies/CompaniesList';
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "jobly-token";
@@ -22,7 +22,7 @@ function App() {
    *
    * Make sure you await this function and check its return value!
    */
-   async function login(username, password) {
+  async function login(username, password) {
     try {
       let token = await JoblyApi.login(username, password);
       setToken(token);
@@ -33,6 +33,8 @@ function App() {
     }
   }
   
+  // make f() to get the curr user
+
   return (
     <div className="App">
       
@@ -64,6 +66,12 @@ function App() {
           <Route exact="true" path="/signup" element={
             <>
              {'bye'}
+            </>
+          }/>
+          <Route exact="true" path="/companies" element={
+            <>
+             {'companies'}
+             <CompaniesList />
             </>
           }/>
           <Route path="*" element={<Navigate replace to="/" />} />

@@ -44,11 +44,10 @@ function Login({ login }) {
         // menus are reset on app resets
         
         const res = await login(username, password)
-        console.log(res)
+    
         if (res.success) {
             navigate("/companies");
         } else {
-            console.log('hi')
             setloginErrors(res.errors);
         }
 
