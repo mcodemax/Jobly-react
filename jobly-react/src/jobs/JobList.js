@@ -17,7 +17,6 @@ const JobList = () => {
     async function getJobs() {
         const res = await JoblyApi.getAllJobs();
         setJobs(res);
-        console.log(res)
     }
     // "Mounting" is when React "renders" the component for 
     // the first time and actually builds the initial DOM from those instructions.

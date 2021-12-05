@@ -7,11 +7,11 @@ import { NavLink, useNavigate } from "react-router-dom";
  */
 const SignUpForm = ({ signUp }) => {
     const emptyForm = {
-        username: 'Fnamex',
-        password: 'passy1',
-        firstName: 'Adam',
-        lastName: 'Ronsy',
-        email: 'poobm@polly.com'
+        username: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        email: ''
     };
 
     const [formData, setFormData] = useState(emptyForm);

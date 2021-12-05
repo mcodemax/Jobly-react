@@ -68,10 +68,15 @@ class JoblyApi {
 
   /** Signup and return token */
   static async signUp(userObj) {
-    
     let res = await this.request(`auth/register`, userObj, 'post');
-    console.log(`*************************************************************************inbackend`, res)
     return res.token;
+  }
+
+
+  /** Get the current user. */
+  static async getCurrentUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
   }
 
   // obviously, you'll add a lot here ...

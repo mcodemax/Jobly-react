@@ -1,6 +1,6 @@
 import './App.css';
 import JoblyApi from './api';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, NavLink, Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import UserContext from "./auth/UserContext";
@@ -11,8 +11,12 @@ import CompaniesList from './companies/CompaniesList';
 import CompanyDetail from './companies/CompanyDetail';
 
 import SignUpForm from './homepage/SignUpForm';
+import jwt from "jsonwebtoken";
 
 import JobList from './jobs/JobList';
+import JobCard from './jobs/JobCard';
+
+import ProfilePage from './profiles/ProfilePage';
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "jobly-token";
@@ -38,9 +42,6 @@ function App() {
     }
   }
 
-
-  // might need to make a f() to set the current user
-
   
   /**
    * How to signUp
@@ -64,7 +65,43 @@ function App() {
     }
   }
 
-  // make f() to get the curr user
+  /** Function to logout */
+  function logout(){
+    setCurrentUser(null);
+    setToken(null);
+  }
+
+
+    // might need to make a f() to set the current user
+  useEffect(function loadUserInfo() {
+    console.debug("App useEffect loadUserInfo", "token=", token);
+
+    async function getCurrentUser() {
+      if (token) {
+        try {
+          let { username } = jwt.decode(token);
+          // put the token on the Api class so it can use it to call the API.
+          JoblyApi.token = token;
+          let currentUser = await JoblyApi.getCurrentUser(username);
+          setCurrentUser(currentUser);
+          // setApplicationIds(new Set(currentUser.applications));
+          //maybe set applications after applying to stuff
+        } catch (err) {
+          console.error("App loadUserInfo: problem loading", err);
+          setCurrentUser(null);
+        }
+      }
+      setInfoLoaded(true);
+    }
+
+    // set infoLoaded to false while async getCurrentUser runs; once the
+    // data is fetched (or even if an error happens!), this will be set back
+    // to false to control whether to display.
+    setInfoLoaded(false);
+    getCurrentUser();
+  }, [token]);
+
+  if(!infoLoaded) return (<>{`WE LOADING`}</>)
 
   return (
     <div className="App">
@@ -72,9 +109,9 @@ function App() {
       
       <BrowserRouter>
         <UserContext.Provider
-            value={{ currentUser }}>
+            value={{ currentUser, setCurrentUser }}>
               {/* maybe add value= isLoggedIn or currUser */}
-        <NavBar />
+        <NavBar logout={logout}/>
         
         <Routes> {/* replaces <Switch> in v6*/ }
           <Route exact="true" path="/" element={
@@ -101,13 +138,25 @@ function App() {
             </>
           }/>
           <Route exact="true" path="/companies" element={
-             <CompaniesList />
+            currentUser ? <CompaniesList /> : <Navigate replace to="/" />
+            //  protect routes if not logged in and alert unauthorized if try to login
           }/>
           <Route exact="true" path="/jobs" element={
-             <JobList />
+            currentUser ? <JobList /> : <Navigate replace to="/" />
           }/>
-          <Route path="/companies/:companyHandle" element={<CompanyDetail />} />
-          <Route path="/jobs/:id" element={<CompanyDetail />} />
+          <Route path="/companies/:companyHandle" element={
+            currentUser ? <CompanyDetail /> : <Navigate replace to="/" />
+          } />
+          <Route path="/jobs/:id" element={
+            currentUser ? <JobCard /> : <Navigate replace to="/" />
+            // need to refactor later ; JobCard needs other info passed in if str8 
+            // using the url
+          } />
+          <Route path="/user/profile" element={
+            currentUser ? <ProfilePage /> : <Navigate replace to="/" />
+            // need to refactor later ; JobCard needs other info passed in if str8 
+            // using the url
+          } />
           <Route path="*" element={<Navigate replace to="/" />} />
           {/*
             When no other route matches the URL, you can render a "not found"
