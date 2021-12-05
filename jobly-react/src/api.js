@@ -79,6 +79,14 @@ class JoblyApi {
     return res.user;
   }
 
+  /** Alert current loggedin user's info.
+   * User can only change { firstName, lastName, password, email } = infoObj
+   */
+  static async editUserInfo(username, infoObj) {
+    console.log()
+    let res = await this.request(`users/${username}`, infoObj, 'patch');
+    return res.user;
+  }
   // obviously, you'll add a lot here ...
 }
 
