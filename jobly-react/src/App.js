@@ -10,6 +10,8 @@ import Login from './Login';
 import CompaniesList from './companies/CompaniesList';
 import CompanyDetail from './companies/CompanyDetail';
 
+import JobList from './jobs/JobList';
+
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "jobly-token";
 
@@ -72,7 +74,11 @@ function App() {
           <Route exact="true" path="/companies" element={
              <CompaniesList />
           }/>
+          <Route exact="true" path="/jobs" element={
+             <JobList />
+          }/>
           <Route path="/companies/:companyHandle" element={<CompanyDetail />} />
+          <Route path="/jobs/:id" element={<CompanyDetail />} />
           <Route path="*" element={<Navigate replace to="/" />} />
           {/*
             When no other route matches the URL, you can render a "not found"

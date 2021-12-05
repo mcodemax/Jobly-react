@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import JoblyApi from "../api";
 import { useParams, useNavigate } from "react-router-dom";
-
+import CompanyDetailJobs from "./CompanyDetailJobs"; 
 
 const CompanyDetail = () => {
     const { companyHandle } = useParams();
@@ -37,6 +37,8 @@ const CompanyDetail = () => {
                 <p>Company Name: {company.name}</p>
                 <p>Employees: {company.numEmployees}</p>
                 <p>Company Details: {company.description}</p>
+                <p>Jobs:</p>
+                <CompanyDetailJobs jobsArr={company.jobs}/>
             </div>
         </>
     )

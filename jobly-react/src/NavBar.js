@@ -29,6 +29,12 @@ const NavBar = () => {
                         <NavLink to="/companies">Companies</NavLink>
                     </NavItem>
                 </Nav>
+
+                <Nav className="ml-auto" navbar>
+                    <NavItem>
+                        <NavLink to="/jobs">Jobs</NavLink>
+                    </NavItem>
+                </Nav>
             </Navbar>
         </div>            
     </>

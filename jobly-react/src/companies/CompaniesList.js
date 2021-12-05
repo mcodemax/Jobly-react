@@ -26,14 +26,6 @@ const CompaniesList = () => {
         setCompanies(res);
     }
 
-    // implement search list
-    function showSearchForm(){
-        return (
-            <>
-                <SearchForm search={search}/>
-            </>
-        )
-    }
 
     if(!companies) return (<>{`WE LOADING`}</>)
 
@@ -41,7 +33,7 @@ const CompaniesList = () => {
     return (
         <>
             <div>
-                {showSearchForm()}
+                <SearchForm search={search}/>
             </div>
             <div>
                 {companies.map(company => {
