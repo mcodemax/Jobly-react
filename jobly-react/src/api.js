@@ -45,7 +45,6 @@ class JoblyApi {
 
   /** Get auth token or get denied */
   static async login(username, password) {
-    console.log({username, password})
     let res = await this.request(`auth/token`, {
       username: username,
       password: password
@@ -83,11 +82,21 @@ class JoblyApi {
    * User can only change { firstName, lastName, password, email } = infoObj
    */
   static async editUserInfo(username, infoObj) {
-    console.log()
     let res = await this.request(`users/${username}`, infoObj, 'patch');
     return res.user;
   }
   // obviously, you'll add a lot here ...
+
+  /** Applies for jobs
+   * I: (username, id), id can be a string prob
+   * O: returns jobId
+   */
+  static async jobApply(username, id){
+    console.debug(`${username}/jobs/${id}`);
+    let res = await this.request(`users/${username}/jobs/${id}`, {}, 'post');
+    return res.applied;
+    // returns {applied: 5} //i think returns actual numeric not a str.
+  }
 }
 
 // for now, put token ("testuser" / "password" on class)

@@ -2,10 +2,11 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
+import CompanyDetailJobs from "../companies/CompanyDetailJobs";
 
 function ProfilePage() {
-    const {currentUser, setCurrentUser} = useContext(UserContext);
-    console.log(currentUser)
+    const {currentUser, setCurrentUser, jobIds} = useContext(UserContext);
+    
     const defaultFormInfo = {
         // username: currentUser.username,
         password: currentUser.password,
@@ -54,8 +55,7 @@ function ProfilePage() {
         if(email) changeInfoObj.email = email;
 
 
-        // console.log({username, password, firstName, lastName, email})
-
+    
         // currently no err handling for incompletes or invalids
         //no implentation for actual database changes.
         // menus are reset on app resets
@@ -99,8 +99,6 @@ function ProfilePage() {
                      value={formData.email} onChange={handleFormChange}/><br/>
                     
                     <input type="submit" id="submit" name="submit" value="Confirm Changes"/>
-    
-                    {/* add a drop down menu to chose either drinks or snacks */}
                 </form>
             </>
         )
@@ -109,16 +107,20 @@ function ProfilePage() {
     return (
         <>
             <div>
-                {/* {username: 'Fname1', firstName: 'Adam',
-                 lastName: 'Ant', email: 'Adam@smolboi.net', isAdmin: false, …} */}
                 <p>User Name: {currentUser.username}</p>
                 <p>First Name: {currentUser.firstName}</p>
                 <p>Last Name: {currentUser.lastName}</p>
                 <p>Email: {currentUser.email}</p>
                 <p>Admin Status: {currentUser.isAdmin ? `Yes` : `No`}</p>
-                
             </div>
             {editForm()}
+            {/* <div>
+                <p>Applied Jobs</p>
+                <CompanyDetailJobs jobsArr={jobIds}/>
+            </div> 
+            That doesn't work because we need a jobsArr to have all company
+            related info. jobIds only has indiv numbers
+            */}
         </>
     );
 }

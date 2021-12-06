@@ -24,7 +24,8 @@ export const TOKEN_STORAGE_ID = "jobly-token";
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  // ^need to store credentials in state
+  // ^store credentials in state
+  const [jobIds, setJobIds] = useState([]);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
   /** Handles site-wide login.
@@ -42,7 +43,6 @@ function App() {
     }
   }
 
-  
   /**
    * How to signUp
    * 
@@ -84,8 +84,9 @@ function App() {
           JoblyApi.token = token;
           let currentUser = await JoblyApi.getCurrentUser(username);
           setCurrentUser(currentUser);
-          // setApplicationIds(new Set(currentUser.applications));
-          //maybe set applications after applying to stuff
+          
+          setJobIds(currentUser.applications);
+          
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
           setCurrentUser(null);
@@ -106,29 +107,31 @@ function App() {
   return (
     <div className="App">
       
-      
+      {console.log(currentUser.applications)}
       <BrowserRouter>
         <UserContext.Provider
-            value={{ currentUser, setCurrentUser }}>
+            value={{ currentUser, setCurrentUser, setJobIds, jobIds }}>
               {/* maybe add value= isLoggedIn or currUser */}
         <NavBar logout={logout}/>
         
         <Routes> {/* replaces <Switch> in v6*/ }
           <Route exact="true" path="/" element={
             <>
-             <div>
-               <h1>Jobly</h1>
-               <p>All the jobs in one, convenient place.</p>
-               <p>
-                <NavLink to="/login">Login</NavLink>
-                <NavLink to="/signup">Sign Up</NavLink>
-               </p>
-             </div>
+            { !currentUser ?
+              <div>
+                <h1>Jobly</h1>
+                <p>All the jobs in one, convenient place.</p>
+                <p>
+                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/signup">Sign Up</NavLink>
+                </p>
+              </div> :
+              <Navigate replace to="/user/profile" />
+            }
             </>
           }/>
           <Route exact="true" path="/login" element={
             <>
-            {/* make a loggedin context */}
              <Login login={login}/>
             </>
           }/>

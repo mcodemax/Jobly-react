@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JoblyApi from "../api";
 import { useParams, useNavigate } from "react-router-dom";
-import CompanyDetailJobs from "./CompanyDetailJobs"; 
+import CompanyDetailJobs from "./CompanyDetailJobs";
 
 const CompanyDetail = () => {
     const { companyHandle } = useParams();
@@ -32,7 +32,7 @@ const CompanyDetail = () => {
     return (
         <>
             <div>
-                <div>{ company.logoUrl ? <img src={company.logoUrl} alt={`${company.name} logo`}></img> 
+                <div>{ company.logoUrl ? <img src="/building.png" alt={`${company.name} logo`}></img> 
                     : null}</div>
                 <p>Company Name: {company.name}</p>
                 <p>Employees: {company.numEmployees}</p>

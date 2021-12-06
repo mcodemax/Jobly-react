@@ -6,15 +6,14 @@ const CompanyCard = ({handle, name, description, numEmployees, logoUrl}) => {
 
     return (
         <>
-            <div>
-                { logoUrl ? <img src={logoUrl} alt={`${name} logo`}></img> : null}
-                <div>
+                <div className="CompanyCard">
                     <p>{name}</p>
                     <p>Description: {description}</p>
                     <p>Employees: {numEmployees}</p>
                     <NavLink to={`/companies/${handle}`}>Details</NavLink>
+                    {/* might need state change when altering this */}
                 </div>
-            </div>
+                { logoUrl ? <img className="CompanyCard-img" src="/building.png" alt={`${name} logo`}></img> : null}
         </>
     );
 }

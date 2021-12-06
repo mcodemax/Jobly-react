@@ -1,2 +1,4 @@
-1. In SignUpForm and Login refactor nagivate later to go to personal profile pages
-2. Maybe in App.js make a f() to set the currUser's info
+1. /${currentUser.username}/jobs/:id make route to apply for yobs
+    -you can not duplicate apply to jobs
+    
+2. style css 
