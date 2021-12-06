@@ -1,14 +1,6 @@
 import React, { useState } from "react";
-import JoblyApi from './api';
 import { useNavigate } from "react-router-dom";
 
-
-/* 
-In backend: 
-http://localhost:3001/auth/token =>
-{ "username":"testuser", "password":"password" }
-
-*/
 
 function Login({ login }) {
     const emptyForm = {
@@ -16,7 +8,7 @@ function Login({ login }) {
         password: ''
     };
     const [formData, setFormData] = useState(emptyForm);
-    const [loginErrors, setloginErrors] = useState([]);
+    // const [loginErrors, setloginErrors] = useState([]); //not implemented
 
     const navigate = useNavigate();
     
@@ -48,7 +40,7 @@ function Login({ login }) {
         if (res.success) {
             navigate("/companies"); //navigate to personal page route prob
         } else {
-            setloginErrors(res.errors);
+            // setloginErrors(res.errors); //not implemented
             setFormData(emptyForm);
         }
 

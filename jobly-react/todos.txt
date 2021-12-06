@@ -1,4 +1,5 @@
-1. /${currentUser.username}/jobs/:id make route to apply for yobs
-    -you can not duplicate apply to jobs
-    
+1. There's 3 components that need uuid v4?? installed 
+    -CompanyDetailJobs
+    -JobList
+    -CompaniesList
 2. style css 

@@ -1,7 +1,7 @@
 import './App.css';
 import JoblyApi from './api';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes, Navigate, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate, NavLink } from 'react-router-dom';
 import NavBar from './NavBar';
 import UserContext from "./auth/UserContext";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -106,8 +106,6 @@ function App() {
 
   return (
     <div className="App">
-      
-      {console.log(currentUser.applications)}
       <BrowserRouter>
         <UserContext.Provider
             value={{ currentUser, setCurrentUser, setJobIds, jobIds }}>

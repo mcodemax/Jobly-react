@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import JobCard from "../jobs/JobCard";
+import { v4 as uuid } from 'uuid';
 
 const CompanyDetailJobs = ({jobsArr}) => {
     
@@ -8,11 +9,9 @@ const CompanyDetailJobs = ({jobsArr}) => {
             <div>
                 {jobsArr.map(job => {
                     return (
-                        <>
-                            <div>
-                                <JobCard {...job}/>
-                            </div>
-                        </>
+                        <div key={uuid()}>
+                            <JobCard {...job}/>
+                        </div>
                     )
                 })}
             </div>

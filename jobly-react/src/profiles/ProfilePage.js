@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
-import CompanyDetailJobs from "../companies/CompanyDetailJobs";
+
 
 function ProfilePage() {
-    const {currentUser, setCurrentUser, jobIds} = useContext(UserContext);
+    const {currentUser, setCurrentUser} = useContext(UserContext);
     
     const defaultFormInfo = {
         // username: currentUser.username,
@@ -17,9 +16,7 @@ function ProfilePage() {
     };
 
     const [formData, setFormData] = useState(defaultFormInfo);
-    const [infoChangeErrors, setInfoChangeErrors] = useState([]);
-
-    const navigate = useNavigate();
+    // const [infoChangeErrors, setInfoChangeErrors] = useState([]); //not implemented
     
     const handleFormChange = (evt) => {
         const {name, value} = evt.target;
@@ -54,23 +51,16 @@ function ProfilePage() {
         if(lastName) changeInfoObj.lastName = lastName;
         if(email) changeInfoObj.email = email;
 
-
-    
         // currently no err handling for incompletes or invalids
         //no implentation for actual database changes.
         // menus are reset on app resets
-        
-        // replace signUp with editing info
-        //in backend uses patch => /users/[username] => returns userObj with info
-        // maybe have to logout then log back in after this
-        
-    
+       
         try {
             const res = await JoblyApi.editUserInfo(currentUser.username, changeInfoObj);
             console.log(res)
             setCurrentUser(res)  
         } catch (error) {
-            setInfoChangeErrors(error);
+            // setInfoChangeErrors(error); //not implemented
             
             alert(error)
             setFormData(defaultFormInfo);
@@ -80,7 +70,7 @@ function ProfilePage() {
     function editForm() {
         return (
             <>
-                <form className="SignUpForm" onSubmit={onFormSubmit}>
+                <form className="ProfilePage-form" onSubmit={onFormSubmit}>
                     
                     <label htmlFor="password">New Password</label><br/>
                     <input type="password" id="password" name="password"
@@ -106,14 +96,18 @@ function ProfilePage() {
 
     return (
         <>
-            <div>
+            <div className="ProfilePage">
                 <p>User Name: {currentUser.username}</p>
                 <p>First Name: {currentUser.firstName}</p>
                 <p>Last Name: {currentUser.lastName}</p>
                 <p>Email: {currentUser.email}</p>
                 <p>Admin Status: {currentUser.isAdmin ? `Yes` : `No`}</p>
             </div>
-            {editForm()}
+            <div>
+                <p>Edit Your Info:</p>
+                {editForm()}
+            </div>
+            
             {/* <div>
                 <p>Applied Jobs</p>
                 <CompanyDetailJobs jobsArr={jobIds}/>

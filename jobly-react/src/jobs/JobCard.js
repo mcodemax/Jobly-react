@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import JoblyApi from '../api';
 import UserContext from "../auth/UserContext";
 
@@ -17,9 +17,6 @@ const JobCard = ({companyHandle, companyName, equity, id, salary, title}) => {
             alert('Job unable to be applied to');
         }
     }
-
-    // console.log(jobIds)
-    //arr.includes(id)
 
     return (
         <>

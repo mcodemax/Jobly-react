@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import JoblyApi from './api';
 
 const SearchForm = ({ search }) => {
     const [searchTerm, setSearchTerm] = useState("");

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import JoblyApi from '../api';
 import CompanyCard from "./CompanyCard";
 import SearchForm from "../SearchForm";
+import { v4 as uuid } from 'uuid';
+
 
 /** Component for listing all Companies on UI */
 const CompaniesList = () => {
@@ -29,7 +31,7 @@ const CompaniesList = () => {
 
     if(!companies) return (<>{`WE LOADING`}</>)
 
-    // below returns when companies arr state has changed
+    
     return (
         <>
             <div>
@@ -38,8 +40,8 @@ const CompaniesList = () => {
             <div>
                 {companies.map(company => {
                     return (
-                        <div>
-                            <CompanyCard {...company}/>
+                        <div key={uuid()}>
+                            <CompanyCard  {...company}/>
                         </div>
                     )
                 })}

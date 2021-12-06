@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /** generates signup form
  * I: signUp function to change state of logged in or not
@@ -15,7 +15,7 @@ const SignUpForm = ({ signUp }) => {
     };
 
     const [formData, setFormData] = useState(emptyForm);
-    const [signUpErrors, setSignUpErrors] = useState([]);
+    // const [signUpErrors, setSignUpErrors] = useState([]); //not implemented
 
     const navigate = useNavigate();
     
@@ -54,7 +54,7 @@ const SignUpForm = ({ signUp }) => {
         if (res.success) {
             navigate("/companies");  //change to nav to a profile info page prob
         } else {
-            setSignUpErrors(res.errors);
+            // setSignUpErrors(res.errors);//not implemented
             alert(res.errors)
             setFormData(emptyForm);
         }

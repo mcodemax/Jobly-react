@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import JobCard from './JobCard';
 import JoblyApi from '../api';
 import SearchForm from '../SearchForm';
+import { v4 as uuid } from 'uuid';
 
 /** jobsArr is passed in if rendering this through geting a company's details */
 const JobList = () => {
@@ -38,7 +39,7 @@ const JobList = () => {
             {jobs.map(job => {
                 return (
                     <div>
-                        <JobCard {...job}/>
+                        <JobCard key={uuid()} {...job}/>
                     </div>
                 )
             })}
@@ -46,14 +47,5 @@ const JobList = () => {
         </>
     )
 }
-
-/**
- * companyHandle: "mejia-scott-ryan"
-companyName: "Mejia, Scott and Ryan"
-equity: null
-id: 200
-salary: 126000
-title: "Accommodation manager"
- */
 
 export default JobList;
