@@ -32,10 +32,10 @@ const CompaniesList = () => {
 
     return (
         <div className="CompaniesList">
-            <div>
+            <div className="CompaniesList-search">
                 <SearchForm search={search}/>
             </div>
-            <div>
+            <div className="CompaniesList-list">
                 {companies.map(company => {
                     return (
                         <div key={uuid()}>
