@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
+import 'ProfilePage.scss';
 
 function ProfilePage() {
     const {currentUser, setCurrentUser} = useContext(UserContext);
@@ -69,7 +70,7 @@ function ProfilePage() {
     function editForm() {
         return (
             <>
-                <form className="ProfilePage-form" onSubmit={onFormSubmit}>
+                <form onSubmit={onFormSubmit}>
                     
                     <label htmlFor="password">New Password</label><br/>
                     <input type="password" id="password" name="password"
@@ -102,7 +103,7 @@ function ProfilePage() {
                 <p>Email: {currentUser.email}</p>
                 <p>Admin Status: {currentUser.isAdmin ? `Yes` : `No`}</p>
             </div>
-            <div>
+            <div className="ProfilePage-form">
                 <p>Edit Your Info:</p>
                 {editForm()}
             </div>
