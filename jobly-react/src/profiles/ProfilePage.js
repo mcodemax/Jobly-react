@@ -95,8 +95,8 @@ function ProfilePage() {
     }
 
     return (
-        <>
-            <div className="ProfilePage">
+        <div className="ProfilePage">
+            <div className="ProfilePage-user">
                 <p>User Name: {currentUser.username}</p>
                 <p>First Name: {currentUser.firstName}</p>
                 <p>Last Name: {currentUser.lastName}</p>
@@ -107,7 +107,7 @@ function ProfilePage() {
                 <p>Edit Your Info:</p>
                 {editForm()}
             </div>
-        </>
+        </div>
     );
 }
 

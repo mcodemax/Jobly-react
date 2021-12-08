@@ -4,7 +4,6 @@ import CompanyCard from "./CompanyCard";
 import SearchForm from "../SearchForm";
 import { v4 as uuid } from 'uuid';
 
-
 /** Component for listing all Companies on UI */
 const CompaniesList = () => {
     const [companies, setCompanies] = useState(null);
@@ -28,10 +27,8 @@ const CompaniesList = () => {
         setCompanies(res);
     }
 
-
     if(!companies) return (<>{`WE LOADING`}</>)
 
-    
     return (
         <>
             <div>
