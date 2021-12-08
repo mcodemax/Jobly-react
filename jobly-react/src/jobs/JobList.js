@@ -3,6 +3,7 @@ import JobCard from './JobCard';
 import JoblyApi from '../api';
 import SearchForm from '../SearchForm';
 import { v4 as uuid } from 'uuid';
+import 'JobList.scss';
 
 /** jobsArr is passed in if rendering this through geting a company's details */
 const JobList = () => {
