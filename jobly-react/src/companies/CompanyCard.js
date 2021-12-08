@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import 'CompanyCard.scss';
 
 /** Component for listing all Companies on UI */
 const CompanyCard = ({handle, name, description, numEmployees, logoUrl}) => {
