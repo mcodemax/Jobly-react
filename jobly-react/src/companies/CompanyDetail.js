@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import JoblyApi from "../api";
 import { useParams, useNavigate } from "react-router-dom";
 import CompanyDetailJobs from "./CompanyDetailJobs";
+import 'CompanyDetail.scss';
 
 const CompanyDetail = () => {
     const { companyHandle } = useParams();
@@ -30,8 +31,7 @@ const CompanyDetail = () => {
     if(!company) return (<>{`Loading`}</>);
 
     return (
-        <>
-            <div>
+            <div className="CompanyDetail">
                 <div>{ company.logoUrl ? <img src="/building.png" alt={`${company.name} logo`}></img> 
                     : null}</div>
                 <p>Company Name: {company.name}</p>
@@ -40,7 +40,6 @@ const CompanyDetail = () => {
                 <p>Jobs:</p>
                 <CompanyDetailJobs jobsArr={company.jobs}/>
             </div>
-        </>
     )
 }
 
