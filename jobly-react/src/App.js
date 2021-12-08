@@ -1,12 +1,13 @@
-import './App.css';
+import './App.scss';
 import JoblyApi from './api';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, NavLink } from 'react-router-dom';
 import NavBar from './NavBar';
+import './NavBar.scss';
 import UserContext from "./auth/UserContext";
 import useLocalStorage from "./hooks/useLocalStorage";
 
-import Login from './Login';
+import Login from './homepage/Login';
 import CompaniesList from './companies/CompaniesList';
 import CompanyDetail from './companies/CompanyDetail';
 
@@ -89,6 +90,7 @@ function App() {
         }
       }
       setInfoLoaded(true);
+      console.log(`hi`)
     }
 
     // set infoLoaded to false while async getCurrentUser runs; once the
@@ -111,7 +113,7 @@ function App() {
           <Route exact="true" path="/" element={
             <>
             { !currentUser ?
-              <div>
+              <div className="App-home">
                 <h1>Jobly</h1>
                 <p>All the jobs in one, convenient place.</p>
                 <p>

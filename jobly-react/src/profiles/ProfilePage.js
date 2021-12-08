@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
 
-
 function ProfilePage() {
     const {currentUser, setCurrentUser} = useContext(UserContext);
     

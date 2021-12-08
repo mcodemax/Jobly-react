@@ -87,8 +87,6 @@ const SignUpForm = ({ signUp }) => {
                  value={formData.email} onChange={handleFormChange}/><br/>
                 
                 <input type="submit" id="submit" name="submit" />
-
-                {/* add a drop down menu to chose either drinks or snacks */}
             </form>
         </>
     )

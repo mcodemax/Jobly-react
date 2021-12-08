@@ -2,7 +2,6 @@ import React, {useContext} from "react";
 import UserContext from "./auth/UserContext";
 import "./NavBar.css";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "reactstrap";
 
 const NavBar = ({logout}) => {
     const { currentUser } = useContext(UserContext);
@@ -14,23 +13,9 @@ const NavBar = ({logout}) => {
                     Jobly
                 </NavLink>
 
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/companies">Companies</NavLink>
-                    </NavItem>
-                </Nav>
-
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/jobs">Jobs</NavLink>
-                    </NavItem>
-                </Nav>
-
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/" onClick={logout}>LogOut</NavLink>
-                    </NavItem>
-                </Nav>
+                <NavLink to="/companies">Companies</NavLink>                
+                <NavLink to="/jobs">Jobs</NavLink>
+                <NavLink to="/" onClick={logout}>Log out</NavLink>
             </>
         )    
     }
@@ -41,34 +26,17 @@ const NavBar = ({logout}) => {
                 <NavLink to="/" className="navbar-brand">
                     Jobly
                 </NavLink>
-
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/login">Login</NavLink>
-                    </NavItem>
-                </Nav>
-
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink to="/signup">Sign Up</NavLink>
-                    </NavItem>
-                </Nav>
-
                 
+                <NavLink to="/login">Login</NavLink>
+                <NavLink to="/signup">Sign Up</NavLink>
             </>
         )    
     }
 
     return (
-    <>
-        <div>
-            <Navbar expand="md">
-                
-
-                { currentUser ? showLoggedIn() : showLoggedOut() }
-            </Navbar>
+        <div className="NavBar">
+            { currentUser ? showLoggedIn() : showLoggedOut() }
         </div>            
-    </>
     );
 }
 
