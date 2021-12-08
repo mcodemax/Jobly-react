@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import JoblyApi from '../api';
 import UserContext from "../auth/UserContext";
+import 'JobCard.scss';
 
 const JobCard = ({companyHandle, companyName, equity, id, salary, title}) => {
     const {setJobIds, jobIds, currentUser} = useContext(UserContext); //importing from context setState f() to add to jobIds applied to
@@ -19,7 +20,7 @@ const JobCard = ({companyHandle, companyName, equity, id, salary, title}) => {
     }
 
     return (
-        <div>
+        <div className="JobCard">
             <p>Company: {companyName}</p>
             <p>Job Title: {title}</p>
             <p>Salary: {salary ? salary : 0}</p>
