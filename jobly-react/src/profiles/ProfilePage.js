@@ -107,14 +107,6 @@ function ProfilePage() {
                 <p>Edit Your Info:</p>
                 {editForm()}
             </div>
-            
-            {/* <div>
-                <p>Applied Jobs</p>
-                <CompanyDetailJobs jobsArr={jobIds}/>
-            </div> 
-            That doesn't work because we need a jobsArr to have all company
-            related info. jobIds only has indiv numbers
-            */}
         </>
     );
 }

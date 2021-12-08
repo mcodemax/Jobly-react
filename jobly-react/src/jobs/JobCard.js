@@ -19,24 +19,20 @@ const JobCard = ({companyHandle, companyName, equity, id, salary, title}) => {
     }
 
     return (
-        <>
-            <div>
-                <div>
-                    <p>Company: {companyName}</p>
-                    <p>Job Title: {title}</p>
-                    <p>Salary: {salary ? salary : 0}</p>
-                    <p>Equity: {equity}</p>
-                    { jobIds.includes(id) ?
-                    <p>Applied</p> :
-                    <form onSubmit={apply}>
-                        <button type="submit" className="">
-                            Apply
-                        </button>
-                    </form>
-                    }
-                </div>
-            </div>
-        </>
+        <div>
+            <p>Company: {companyName}</p>
+            <p>Job Title: {title}</p>
+            <p>Salary: {salary ? salary : 0}</p>
+            <p>Equity: {equity}</p>
+            { jobIds.includes(id) ?
+            <p>Applied</p> :
+            <form onSubmit={apply}>
+                <button type="submit" className="">
+                    Apply
+                </button>
+            </form>
+            }
+        </div>
     )
 }
 

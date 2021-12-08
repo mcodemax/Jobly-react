@@ -44,12 +44,8 @@ function App() {
   }
 
   /**
-   * How to signUp
-   * 
-   * 
-   * in backend=> /auth/register<= { username, password, firstName, lastName, email }
-   * 
-   * test:
+   * How to signUp:
+   * example userObj:
    * { "username":"Fname1", "password":"passy1", "firstName":"Adam", "lastName":"Ant", "email":"Adam@smolboi.net" }
    * 
    */
@@ -109,7 +105,6 @@ function App() {
       <BrowserRouter>
         <UserContext.Provider
             value={{ currentUser, setCurrentUser, setJobIds, jobIds }}>
-              {/* maybe add value= isLoggedIn or currUser */}
         <NavBar logout={logout}/>
         
         <Routes> {/* replaces <Switch> in v6*/ }
@@ -140,7 +135,6 @@ function App() {
           }/>
           <Route exact="true" path="/companies" element={
             currentUser ? <CompaniesList /> : <Navigate replace to="/" />
-            //  protect routes if not logged in and alert unauthorized if try to login
           }/>
           <Route exact="true" path="/jobs" element={
             currentUser ? <JobList /> : <Navigate replace to="/" />
@@ -150,13 +144,9 @@ function App() {
           } />
           <Route path="/jobs/:id" element={
             currentUser ? <JobCard /> : <Navigate replace to="/" />
-            // need to refactor later ; JobCard needs other info passed in if str8 
-            // using the url
           } />
           <Route path="/user/profile" element={
             currentUser ? <ProfilePage /> : <Navigate replace to="/" />
-            // need to refactor later ; JobCard needs other info passed in if str8 
-            // using the url
           } />
           <Route path="*" element={<Navigate replace to="/" />} />
           {/*

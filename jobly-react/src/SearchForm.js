@@ -17,7 +17,6 @@ const SearchForm = ({ search }) => {
     }
 
     return (
-        <>
         <div className="SearchForm">
             <form className="form-inline" onSubmit={handleSubmit}>
             <input
@@ -32,7 +31,6 @@ const SearchForm = ({ search }) => {
             </button>
             </form>
         </div>
-        </>
     )
 }
 

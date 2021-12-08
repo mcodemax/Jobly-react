@@ -85,7 +85,6 @@ class JoblyApi {
     let res = await this.request(`users/${username}`, infoObj, 'patch');
     return res.user;
   }
-  // obviously, you'll add a lot here ...
 
   /** Applies for jobs
    * I: (username, id), id can be a string prob
@@ -95,7 +94,6 @@ class JoblyApi {
     console.debug(`${username}/jobs/${id}`);
     let res = await this.request(`users/${username}/jobs/${id}`, {}, 'post');
     return res.applied;
-    // returns {applied: 5} //i think returns actual numeric not a str.
   }
 }
 

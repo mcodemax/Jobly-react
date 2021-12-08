@@ -43,15 +43,8 @@ function Login({ login }) {
             // setloginErrors(res.errors); //not implemented
             setFormData(emptyForm);
         }
-
-        
     };
 
-    //make a form
-
-    // make api call to login
-    // api call via
-    // store Login state outside this funciton
     return (
         <>
             <form className="Login" onSubmit={onFormSubmit}>
@@ -64,14 +57,9 @@ function Login({ login }) {
                  value={formData.password} onChange={handleFormChange}/><br/>
                 
                 <input type="submit" id="submit" name="submit" />
-
-                {/* add a drop down menu to chose either drinks or snacks */}
             </form>
         </>
     );
 }
 
 export default Login;
-
-
-// node -i -e "$(< Login.js)"
