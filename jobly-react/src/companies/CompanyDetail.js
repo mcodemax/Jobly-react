@@ -34,10 +34,10 @@ const CompanyDetail = () => {
             <div className="CompanyDetail">
                 <div>{ company.logoUrl ? <img src="/building.png" alt={`${company.name} logo`}></img> 
                     : null}</div>
-                <p>Company Name: {company.name}</p>
-                <p>Employees: {company.numEmployees}</p>
-                <p>Company Details: {company.description}</p>
-                <p>Jobs:</p>
+                <p><h2 className="CompanyDetail-main">Company Name:</h2> <h2 className="CompanyDetail-desc">{company.name}</h2></p>
+                <p><h2 className="CompanyDetail-main">Employees:</h2> <h2 className="CompanyDetail-desc">{company.numEmployees}</h2></p>
+                <p><h2 className="CompanyDetail-main">Company Details:</h2> <h2 className="CompanyDetail-desc">{company.description}</h2></p>
+                <p><h2 className="CompanyDetail-main">Jobs:</h2></p>
                 <CompanyDetailJobs jobsArr={company.jobs}/>
             </div>
     )
