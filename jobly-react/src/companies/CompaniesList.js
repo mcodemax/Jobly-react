@@ -30,7 +30,7 @@ const CompaniesList = () => {
     if(!companies) return (<>{`WE LOADING`}</>)
 
     return (
-        <>
+        <div className="CompaniesList">
             <div>
                 <SearchForm search={search}/>
             </div>
@@ -43,7 +43,7 @@ const CompaniesList = () => {
                     )
                 })}
             </div>
-        </>
+        </div>
     );
 }
 
