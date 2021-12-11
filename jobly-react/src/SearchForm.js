@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './SearchForm.scss'
 
 const SearchForm = ({ search }) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -19,16 +20,16 @@ const SearchForm = ({ search }) => {
     return (
         <div className="SearchForm">
             <form className="form-inline" onSubmit={handleSubmit}>
-            <input
-                className=""
-                name="searchTerm"
-                placeholder="Enter search term"
-                value={searchTerm}
-                onChange={handleChange}
-            />
-            <button type="submit" className="">
-                Submit
-            </button>
+                <input
+                    className=""
+                    name="searchTerm"
+                    placeholder="Enter search term"
+                    value={searchTerm}
+                    onChange={handleChange}
+                />
+                <button type="submit" className="">
+                    Submit
+                </button>
             </form>
         </div>
     )

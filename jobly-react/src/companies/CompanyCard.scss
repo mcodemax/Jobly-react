@@ -4,14 +4,32 @@
     line-height: 1.5;
     text-align: left;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
-    -webkit-font-smoothing: antialiased;
     word-wrap: break-word;
-    color: inherit;
-    box-sizing: border-box;
+    // color: inherit;
     flex: 1 1 auto;
     min-height: 1px;
-    padding: 1.25rem;
-  
+
+    padding: 20px;
+    
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    //make outline same color as parent's bkrnd later
+    // parent's background-color: rgb(165, 156, 156);
+    // content > border > outline
+    border: 5px solid rgb(49, 47, 83);
+    border-radius: 2pt;
+    outline: rgb(165, 156, 156) solid 10px;
+    background-color: rgb(182, 181, 181);
+    
+
+    // The major web browsers will render a <p> tag with margin above and
+    // below the paragraph. A <div> tag will be rendered without any margin at all.
+
+    // border-style: solid; //border style needs to be here for any border-prop to do anything
+    // border-width: 5px;
+
   p {
     text-align: left;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
@@ -27,8 +45,6 @@
   
   .CompanyCard-img {
     text-align: left;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
-    -webkit-font-smoothing: antialiased;
     word-wrap: break-word;
     color: inherit;
     font-weight: 500;
@@ -37,8 +53,7 @@
     box-sizing: border-box;
     border-style: none;
     vertical-align: middle;
-    float: right!important;
-    margin-left: 3rem!important;
     width: 50px;
+    margin-left: 10px;
   }
 }

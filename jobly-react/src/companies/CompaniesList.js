@@ -3,7 +3,7 @@ import JoblyApi from '../api';
 import CompanyCard from "./CompanyCard";
 import SearchForm from "../SearchForm";
 import { v4 as uuid } from 'uuid';
-import "CompaniesList.scss";
+import "./CompaniesList.scss";
 
 /** Component for listing all Companies on UI */
 const CompaniesList = () => {
@@ -38,9 +38,7 @@ const CompaniesList = () => {
             <div className="CompaniesList-list">
                 {companies.map(company => {
                     return (
-                        <div key={uuid()}>
-                            <CompanyCard  {...company}/>
-                        </div>
+                        <CompanyCard key={uuid()}  {...company}/>
                     )
                 })}
             </div>

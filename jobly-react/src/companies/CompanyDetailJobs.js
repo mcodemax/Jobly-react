@@ -1,7 +1,7 @@
 import React from "react";
 import JobCard from "../jobs/JobCard";
 import { v4 as uuid } from 'uuid';
-import 'CompanyDetailJobs.scss';
+import './CompanyDetailJobs.scss';
 
 const CompanyDetailJobs = ({jobsArr}) => {
     

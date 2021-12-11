@@ -3,7 +3,7 @@ import JobCard from './JobCard';
 import JoblyApi from '../api';
 import SearchForm from '../SearchForm';
 import { v4 as uuid } from 'uuid';
-import 'JobList.scss';
+import './JobList.scss';
 
 /** jobsArr is passed in if rendering this through geting a company's details */
 const JobList = () => {
@@ -32,20 +32,20 @@ const JobList = () => {
     if(!jobs) return (<>{`WE LOADING`}</>)
 
     return (
-        <>
-        <div>
-           <SearchForm search={search}/>
+        <div className="JobList">
+            <div>
+                <SearchForm search={search}/>
+            </div>
+            <div>
+                {jobs.map(job => {
+                    return (
+                        <div>
+                            <JobCard key={uuid()} {...job}/>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
-        <div>
-            {jobs.map(job => {
-                return (
-                    <div>
-                        <JobCard key={uuid()} {...job}/>
-                    </div>
-                )
-            })}
-        </div>
-        </>
     )
 }
 

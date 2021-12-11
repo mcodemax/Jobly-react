@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import JoblyApi from "../api";
 import { useParams, useNavigate } from "react-router-dom";
 import CompanyDetailJobs from "./CompanyDetailJobs";
-import 'CompanyDetail.scss';
+import './CompanyDetail.scss';
 
 const CompanyDetail = () => {
     const { companyHandle } = useParams();

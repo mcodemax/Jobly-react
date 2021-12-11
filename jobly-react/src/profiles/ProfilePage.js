@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
-import 'ProfilePage.scss';
+import './ProfilePage.scss';
 
 function ProfilePage() {
     const {currentUser, setCurrentUser} = useContext(UserContext);
@@ -71,24 +71,26 @@ function ProfilePage() {
         return (
             <>
                 <form onSubmit={onFormSubmit}>
-                    
-                    <label htmlFor="password">New Password</label><br/>
-                    <input type="password" id="password" name="password"
-                     value={formData.password} onChange={handleFormChange}/><br/>
-    
-                    <label htmlFor="firstName">First Name</label><br/>
-                    <input type="firstName" id="firstName" name="firstName"
-                     value={formData.firstName} onChange={handleFormChange}/><br/>
-    
-                    <label htmlFor="lastName">Last Name</label><br/>
-                    <input type="lastName" id="lastName" name="lastName"
-                     value={formData.lastName} onChange={handleFormChange}/><br/>
-    
-                    <label htmlFor="email">Email</label><br/>
-                    <input type="email" id="email" name="email"
-                     value={formData.email} onChange={handleFormChange}/><br/>
-                    
-                    <input type="submit" id="submit" name="submit" value="Confirm Changes"/>
+                    <p>Edit Your Info:</p>
+                    <div>
+                        <label htmlFor="password">New Password</label><br/>
+                        <input type="password" id="password" name="password"
+                        value={formData.password} onChange={handleFormChange}/><br/>
+        
+                        <label htmlFor="firstName">First Name</label><br/>
+                        <input type="firstName" id="firstName" name="firstName"
+                        value={formData.firstName} onChange={handleFormChange}/><br/>
+        
+                        <label htmlFor="lastName">Last Name</label><br/>
+                        <input type="lastName" id="lastName" name="lastName"
+                        value={formData.lastName} onChange={handleFormChange}/><br/>
+        
+                        <label htmlFor="email">Email</label><br/>
+                        <input type="email" id="email" name="email"
+                        value={formData.email} onChange={handleFormChange}/><br/>
+                        
+                        <input className="submit" type="submit" id="submit" name="submit" value="Confirm Changes"/>
+                    </div>
                 </form>
             </>
         )
@@ -104,7 +106,6 @@ function ProfilePage() {
                 <p>Admin Status: {currentUser.isAdmin ? `Yes` : `No`}</p>
             </div>
             <div className="ProfilePage-form">
-                <p>Edit Your Info:</p>
                 {editForm()}
             </div>
         </div>

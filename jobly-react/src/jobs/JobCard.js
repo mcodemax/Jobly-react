@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import JoblyApi from '../api';
 import UserContext from "../auth/UserContext";
-import 'JobCard.scss';
+import './JobCard.scss';
 
 const JobCard = ({companyHandle, companyName, equity, id, salary, title}) => {
     const {setJobIds, jobIds, currentUser} = useContext(UserContext); //importing from context setState f() to add to jobIds applied to
@@ -26,9 +26,9 @@ const JobCard = ({companyHandle, companyName, equity, id, salary, title}) => {
             <p>Salary: {salary ? salary : 0}</p>
             <p>Equity: {equity}</p>
             { jobIds.includes(id) ?
-            <p>Applied</p> :
+            <p className="JobCard-applied">Applied</p> :
             <form onSubmit={apply}>
-                <button type="submit" className="">
+                <button type="submit" className="JobCard-apply">
                     Apply
                 </button>
             </form>
