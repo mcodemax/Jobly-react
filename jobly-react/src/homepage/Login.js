@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import './Login.scss';
 
 function Login({ login }) {
     const emptyForm = {
@@ -56,7 +56,7 @@ function Login({ login }) {
                 <input type="password" id="password" name="password"
                  value={formData.password} onChange={handleFormChange}/><br/>
                 
-                <input type="submit" id="submit" name="submit" />
+                <button type="submit" id="submit" name="submit">Submit</button>
             </form>
         </>
     );

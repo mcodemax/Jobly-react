@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import './SignUpForm.scss';
 
 /** generates signup form
  * I: signUp function to change state of logged in or not
@@ -86,7 +87,7 @@ const SignUpForm = ({ signUp }) => {
                 <input type="email" id="email" name="email"
                  value={formData.email} onChange={handleFormChange}/><br/>
                 
-                <input type="submit" id="submit" name="submit" />
+                <button type="submit" id="submit" name="submit" >Sign Up</button>
             </form>
         </>
     )
