@@ -2,14 +2,14 @@ import React, { useState, useContext } from "react";
 import JoblyApi from "../api";
 import UserContext from "../auth/UserContext";
 import './ProfilePage.scss';
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
     const {currentUser, setCurrentUser} = useContext(UserContext);
-    
+    const navigate = useNavigate();
+
     const defaultFormInfo = {
-        // username: currentUser.username,
         password: currentUser.password,
-        // confirmpassword: '', //implement later
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
         email: currentUser.email
@@ -31,7 +31,7 @@ function ProfilePage() {
         evt.preventDefault();
         let { 
             password,
-            // confirmpassword,
+            oldPass,
             firstName,
             lastName,
             email
@@ -65,6 +65,11 @@ function ProfilePage() {
             alert(error)
             setFormData(defaultFormInfo);
         }
+
+        alert(`Info Updated`)
+        setFormData(defaultFormInfo);
+
+        navigate("/");
     };
 
     function editForm() {
@@ -73,9 +78,6 @@ function ProfilePage() {
                 <form onSubmit={onFormSubmit}>
                     <p>Edit Your Info:</p>
                     <div>
-                        <label htmlFor="password">New Password</label><br/>
-                        <input type="password" id="password" name="password"
-                        value={formData.password} onChange={handleFormChange}/><br/>
         
                         <label htmlFor="firstName">First Name</label><br/>
                         <input type="firstName" id="firstName" name="firstName"
@@ -89,6 +91,10 @@ function ProfilePage() {
                         <input type="email" id="email" name="email"
                         value={formData.email} onChange={handleFormChange}/><br/>
                         
+                        <label htmlFor="password">New Password</label><br/>
+                        <input type="password" id="password" name="password"
+                        value={formData.password} onChange={handleFormChange}/><br/>
+
                         <input className="submit" type="submit" id="submit" name="submit" value="Confirm Changes"/>
                     </div>
                 </form>
